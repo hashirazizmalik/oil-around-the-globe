@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom';
+import * as cheerio from 'cheerio';
 
 export default async function handler(req, res) {
   // CORS Configuration
@@ -9,13 +9,18 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=120');
 
   try {
-    const [wtiDom, brentDom] = await Promise.all([
-      JSDOM.fromURL('https://markets.businessinsider.com/commodities/oil-price?type=wti', {userAgent: "Mozilla/5.0"}),
-      JSDOM.fromURL('https://markets.businessinsider.com/commodities/oil-price?type=brent', {userAgent: "Mozilla/5.0"})
+    const fetchWithUserAgent = (url) => fetch(url, { headers: { 'User-Agent': 'Mozilla/5.0' } }).then(res => res.text());
+
+    const [wtiHtml, brentHtml] = await Promise.all([
+      fetchWithUserAgent('https://markets.businessinsider.com/commodities/oil-price?type=wti'),
+      fetchWithUserAgent('https://markets.businessinsider.com/commodities/oil-price?type=brent')
     ]);
 
-    const wtiStr = wtiDom.window.document.querySelector('.price-section__current-value')?.textContent.trim();
-    const brentStr = brentDom.window.document.querySelector('.price-section__current-value')?.textContent.trim();
+    const $wti = cheerio.load(wtiHtml);
+    const $brent = cheerio.load(brentHtml);
+
+    const wtiStr = $wti('.price-section__current-value').text().trim();
+    const brentStr = $brent('.price-section__current-value').text().trim();
 
     res.status(200).json({
       wti: wtiStr ? parseFloat(wtiStr.replace(/,/g, '')) : null,

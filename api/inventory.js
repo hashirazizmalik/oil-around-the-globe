@@ -1,4 +1,4 @@
-import { JSDOM } from 'jsdom';
+import * as cheerio from 'cheerio';
 
 export default async function handler(req, res) {
   // CORS Configuration
@@ -9,19 +9,22 @@ export default async function handler(req, res) {
   res.setHeader('Cache-Control', 's-maxage=600, stale-while-revalidate=120');
 
   try {
-    const dom = await JSDOM.fromURL('https://tradingeconomics.com/united-states/crude-oil-stocks-change', {userAgent: "Mozilla/5.0"});
-    const tb = dom.window.document.querySelector('#calendar tbody');
+    const html = await fetch('https://tradingeconomics.com/united-states/crude-oil-stocks-change', {
+      headers: { 'User-Agent': 'Mozilla/5.0' }
+    }).then(res => res.text());
+
+    const $ = cheerio.load(html);
+    const rows = $('#calendar tbody tr').slice(-4).toArray();
     const results = [];
     
-    if (tb) {
-      const rows = Array.from(tb.querySelectorAll('tr')).slice(-4);
+    if (rows.length > 0) {
       let currentTotalAmount = 455.0; 
 
       rows.forEach(r => {
-        const cells = r.querySelectorAll('td');
+        const cells = $(r).find('td');
         if (cells.length >= 6) {
-          const dateStr = cells[0].textContent.trim().split(' ')[0];
-          const actualStr = cells[4].textContent.trim();
+          const dateStr = $(cells[0]).text().trim().split(' ')[0];
+          const actualStr = $(cells[4]).text().trim();
           
           let status = 'down';
           let changeVal = 0;
