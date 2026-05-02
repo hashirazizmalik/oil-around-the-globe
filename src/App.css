@@ -1,0 +1,38 @@
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.page-header {
+  padding: 60px 0 20px 0;
+  text-align: center;
+}
+
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.app-footer {
+  padding: 40px 0;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  background-color: var(--surface-color);
+  border-top: 1px solid var(--border-color);
+}

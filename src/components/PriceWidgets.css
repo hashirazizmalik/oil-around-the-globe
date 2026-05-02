@@ -1,0 +1,83 @@
+.price-widgets-section {
+  padding: 40px 0;
+}
+
+.section-title {
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: var(--text-primary);
+}
+
+.widgets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.widget-card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.price-card {
+  height: auto;
+  padding: 24px;
+}
+
+.price-card-inner {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.price-card-symbol {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.price-card-title {
+  font-size: 1.25rem;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.price-card-value-container {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+}
+
+.price-card-icon {
+  color: var(--text-primary);
+  margin-right: 4px;
+}
+
+.price-card-amount {
+  font-size: 3rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.price-card-unit {
+  margin-left: 12px;
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  align-self: flex-end;
+  padding-bottom: 6px;
+}
+
+.price-card-error {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  opacity: 0.5;
+}
+
+.tradingview-widget-container {
+  width: 100%;
+  height: 100%;
+}

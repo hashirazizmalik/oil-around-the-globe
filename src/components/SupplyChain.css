@@ -1,0 +1,136 @@
+.supply-chain-section {
+  padding: 60px 0 100px 0;
+  background: linear-gradient(to bottom, #ffffff, #f8f9fc);
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.section-header .section-title {
+  margin-bottom: 0;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+}
+
+.source-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  background: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+
+.inventory-table-container {
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid rgba(0,0,0,0.04);
+}
+
+.inventory-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: left;
+}
+
+.inventory-table th {
+  padding: 20px 24px;
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  background-color: #fbfcfd;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.inventory-table td {
+  padding: 24px;
+  border-bottom: 1px solid var(--border-color);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+}
+
+.inventory-table tr:last-child td {
+  border-bottom: none;
+}
+
+.inventory-table tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.inventory-table tbody tr:hover td {
+  background-color: #f8fafc;
+}
+
+.font-mono {
+  font-family: 'JetBrains Mono', 'SF Mono', Consolas, monospace;
+  font-size: 0.95rem !important;
+  color: var(--text-primary);
+  font-weight: 600 !important;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.status-badge.up {
+  background-color: rgba(52, 199, 89, 0.12);
+  color: #248a3d;
+}
+
+.status-badge.down {
+  background-color: rgba(255, 59, 48, 0.12);
+  color: #c92a35;
+}
+
+.table-footer {
+  padding: 16px 24px;
+  background-color: #fbfcfd;
+  border-top: 1px solid var(--border-color);
+  text-align: right;
+}
+
+.table-footer p {
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  
+  .inventory-table-container {
+    overflow-x: auto;
+  }
+  
+  .inventory-table th, .inventory-table td {
+    padding: 16px;
+  }
+}
